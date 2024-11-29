@@ -116,6 +116,9 @@ vim.opt.linebreak = true
 -- Prevent Vim from automatically inserting line breaks in newly entered text
 vim.opt.textwidth = 0
 
+-- Ensure true color is supported
+vim.opt.termguicolors = true
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -885,6 +888,11 @@ require('lazy').setup({
 
       -- Keymap to toggle light/dark mode
       vim.keymap.set('n', '<leader>tt', toggle_theme, { desc = '[T]oggle [T]heme' })
+      -- Autocommand to force colorscheme to load after all plugins
+      vim.api.nvim_create_autocmd('VimEnter', {
+        pattern = '*',
+        command = 'colorscheme default',
+      })
     end,
   },
 
